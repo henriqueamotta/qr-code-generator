@@ -1,10 +1,24 @@
 import chalk from 'chalk';
 
+function isValidUrl(value) {
+  try {
+    new URL(value);
+    return true;
+  } catch {
+    try {
+      new URL(`http://${value}`);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+}
+
 const promptQRCode = [
   {
     name: "link",
     description: chalk.yellow.bold("Digite o link para gerar o QR Code:"),
-    pattern: /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/,
+    conform: isValidUrl,
     message: chalk.red.italic("Digite um link válido"),
     required: true,
   },
