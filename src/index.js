@@ -24,9 +24,9 @@ async function main() {
     select = await askMainChoice();
 
     if (select == null) break;
-    if (select == 1) await createQRCode();
-    if (select == 2) await createPassword();
-  } while (select != 0);
+    if (select === "1") await createQRCode();
+    if (select === "2") await createPassword();
+  } while (select !== "0");
 
   console.log(chalk.cyan("Até logo!"));
 }
