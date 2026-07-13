@@ -1,5 +1,17 @@
 import qr from "qrcode-terminal";
+import QRCode from "qrcode";
 import chalk from "chalk";
+import { mkdir } from "node:fs/promises";
+import path from "node:path";
+
+const OUTPUT_DIR = path.join(process.cwd(), "qrcodes");
+
+async function saveQRCodeFile(link) {
+  await mkdir(OUTPUT_DIR, { recursive: true });
+  const filePath = path.join(OUTPUT_DIR, `qrcode-${Date.now()}.png`);
+  await QRCode.toFile(filePath, link);
+  return filePath;
+}
 
 async function handle (err, result) {
   if (err) {
@@ -15,6 +27,11 @@ async function handle (err, result) {
       resolve();
     });
   });
+
+  if (result.save.toLowerCase() === "s") {
+    const filePath = await saveQRCodeFile(result.link);
+    console.log(chalk.green(`Arquivo salvo em: ${filePath}`));
+  }
 }
 
 export default handle;
