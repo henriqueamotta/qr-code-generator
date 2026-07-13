@@ -13,12 +13,7 @@ async function saveQRCodeFile(link) {
   return filePath;
 }
 
-async function handle (err, result) {
-  if (err) {
-    console.error(chalk.red("Erro na aplicação:"), err.message ?? err);
-    return;
-  }
-
+async function handle (result) {
   const isSmall = result.type == 2;
   await new Promise((resolve) => {
     qr.generate(result.link, { small: isSmall }, (qrcode) => {
