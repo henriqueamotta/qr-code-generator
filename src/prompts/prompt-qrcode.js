@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 
-function isValidUrl(value) {
+export function isValidUrl(value) {
   try {
     new URL(value);
     return true;

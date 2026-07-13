@@ -6,9 +6,9 @@ import path from "node:path";
 
 // src/services/qr-code -> raiz do projeto
 const PROJECT_ROOT = path.join(import.meta.dirname, "..", "..", "..");
-const OUTPUT_DIR = path.join(PROJECT_ROOT, "qrcodes");
+export const OUTPUT_DIR = path.join(PROJECT_ROOT, "qrcodes");
 
-async function saveQRCodeFile(link) {
+export async function saveQRCodeFile(link) {
   await mkdir(OUTPUT_DIR, { recursive: true });
   const filePath = path.join(OUTPUT_DIR, `qrcode-${Date.now()}.png`);
   await QRCode.toFile(filePath, link);
