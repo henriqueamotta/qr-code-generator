@@ -29,6 +29,13 @@ const promptQRCode = [
     message: chalk.red.italic("Escolha uma opção válida (1 ou 2)"),
     required: true,
   },
+  {
+    name: "save",
+    description: chalk.yellow("Deseja salvar o QR Code como arquivo PNG? (s/n)"),
+    pattern: /^[sn]$/i,
+    message: chalk.red.italic("Responda com 's' ou 'n'"),
+    required: true,
+  },
 ];
 
 export default promptQRCode;
