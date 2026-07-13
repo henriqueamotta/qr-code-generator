@@ -3,7 +3,7 @@ import chalk from "chalk";
 
 async function handle (err, result) {
   if (err) {
-    console.error("Erro na aplicação:");
+    console.error(chalk.red("Erro na aplicação:"), err.message ?? err);
     return;
   }
 
