@@ -4,7 +4,9 @@ import chalk from "chalk";
 import { mkdir } from "node:fs/promises";
 import path from "node:path";
 
-const OUTPUT_DIR = path.join(process.cwd(), "qrcodes");
+// src/services/qr-code -> raiz do projeto
+const PROJECT_ROOT = path.join(import.meta.dirname, "..", "..", "..");
+const OUTPUT_DIR = path.join(PROJECT_ROOT, "qrcodes");
 
 async function saveQRCodeFile(link) {
   await mkdir(OUTPUT_DIR, { recursive: true });
